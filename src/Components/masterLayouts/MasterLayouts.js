@@ -8,14 +8,6 @@ function MasterLayouts() {
   return (
     <div className='layoutWrapper'>
         <Header />
-        <>
-        <p>lkl;k;lk;lk;k;l</p>
-        <p>lkl;k;lk;lk;k;l</p>
-        <p>lkl;k;lk;lk;k;l</p>
-        <p>lkl;k;lk;lk;k;l</p>
-        <p>lkl;k;lk;lk;k;l</p>
-        <p>lkl;k;lk;lk;k;l</p>
-        </>
             <Outlet />
         <Footer />
     </div>
