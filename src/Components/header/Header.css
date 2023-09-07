@@ -1,0 +1,28 @@
+.mainHeader {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+.menuItems .nav-item a{
+    color: #c4cfde;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 0px 30px;
+}
+.menuItems{
+    align-items: center;
+}
+.btnPrim button{
+    border-radius: 6px;
+    background: linear-gradient(145deg, #1e2024, #23272b);
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 500;
+    padding: 17px 19px;
+    line-height: 21px;
+    box-shadow: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+}

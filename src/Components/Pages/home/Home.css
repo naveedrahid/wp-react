@@ -1,0 +1,67 @@
+.bannerSlider{
+    background:url('../../../../public/assets/images/bg-image-1.jpg') no-repeat center/cover;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+.bannerSlider:before {
+    content: '';
+    background-color: #212428;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.7;
+}
+.bannerSlider h1{
+    color: #c4cfde;
+    font-weight: 700;
+    font-size:75px;
+}
+.bannerSlider h1 strong{
+    font-weight: 700;
+}
+.devServices svg, .devServices h2, .devServices p {
+    color: #c4cfde;
+}
+
+.devServices {
+    padding: 35px;
+    transition: 0.5s all ease-in-out;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    background: linear-gradient(145deg, #1e2024, #23272b);
+}
+
+.devServices:before {
+    content: "";
+    position: absolute;
+    transition: 0.4s;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    opacity: 0;
+    z-index: -1;
+}
+
+.devServices:hover:before {
+    opacity: 1;
+}
+
+.devServices:hover {
+    padding-bottom: 50px;
+}
+.devServicesIcon {
+    margin-bottom: 25px;
+}
+.devServicesIcon svg{
+    width: 50px;
+    height: auto;
+    color: #ff014f;
+    stroke-width: 1 !important;
+}
