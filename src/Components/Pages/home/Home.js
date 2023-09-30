@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Carousel, Col, Container, Form, Image, Modal, Row, Tab, Tabs } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -6,11 +6,12 @@ import { faBehance, faFacebookF, faGithub, faLinkedinIn, faTwitter } from '@fort
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import useProgressBars from '../../utils/useProgressBars'
 import './Home.css'
+import { getHomeData } from '../../apiServices/Homw.Services';
 
 
 function Home() {
   const [show, setShow] = useState(false);
-
+  const [posts, setPosts] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -27,8 +28,40 @@ function Home() {
   };
   const progressBars = useProgressBars();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getHomeData('/posts');
+        setPosts(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   return (
+    <>
+<ul className='mt-5 pt-5'>
+  {posts.map(post => (
+    <li key={post.id}>
+      <h2>{post.title}</h2>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      {post.featured_image && (
+        <img
+          src={post.featured_image}
+          alt={post.title}
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+      )}
+    </li>
+  ))}
+</ul>
+
+
+    
     <div className='mainContent'>
       <section className='bannerSlider d-flex align-items-center'>
         <Container>
@@ -599,6 +632,7 @@ function Home() {
         </Container>
       </section>
     </div>
+    </>
   )
 }
 
