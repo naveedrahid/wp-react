@@ -1,10 +1,13 @@
+body{
+    /* background-color:#212428 !important; */
+    color:#c4cfde !important;
+}
 .bannerSlider {
     background: url('../../../../public/assets/images/bg-image-1.jpg') no-repeat center/cover;
     height: 100vh;
     position: relative;
     z-index: 1;
 }
-
 .bannerSlider:before {
     content: '';
     background-color: #212428;
@@ -14,20 +17,15 @@
     z-index: -1;
     opacity: 0.7;
 }
-
-.bannerSlider h1 {
+.bannerSlider h1{
     color: #c4cfde;
     font-weight: 700;
-    font-size: 75px;
+    font-size:75px;
 }
-
-.bannerSlider h1 strong {
+.bannerSlider h1 strong{
     font-weight: 700;
 }
-
-.devServices svg,
-.devServices h2,
-.devServices p {
+.devServices svg, .devServices h2, .devServices p {
     color: #c4cfde;
 }
 
@@ -62,18 +60,112 @@
 .devServices:hover {
     padding-bottom: 50px;
 }
-
 .devServicesIcon {
     margin-bottom: 25px;
 }
-
-.devServicesIcon svg {
+.devServicesIcon svg{
     width: 50px;
     height: auto;
     color: #ff014f;
     stroke-width: 1 !important;
 }
+.experienceWrappper, .educationWrapper{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
 
+.experienceColWrapper {
+    display: inline-block;
+    border-top: solid 1px #c4cfde;
+    padding: 50px 50px;
+    border-bottom: solid 1px #c4cfde;
+    border-left: solid 1px #c4cfde;
+}
+
+.experienceColWrapper span.experienceNum {
+    font-size: 258px;
+    line-height: 258px;
+    font-weight: 400;
+}
+
+.experienceColInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.experienceColInner svg {
+    font-size: 35px;
+    color: #ff014f;
+}
+
+.experienceText p {
+    font-size: 20px;
+    font-weight: 400;
+    width: 64%;
+    text-align: right;
+    float: right;
+    margin-bottom: 0;
+}
+
+.experienceText:before {
+    content: '';
+    height: 1px;
+    width: 50%;
+    background: #c4cfde;
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+}
+
+.experienceText {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+.experienceRunningBar p {
+    color: #7a7a7a;
+}
+.progressBar  .barBg {
+    background: #7a7a7a14;
+    margin-top: 10px;
+    height: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.progressBar .barBg:before {
+    content: '';
+    background: #ff014f;
+    position: absolute;
+    height: 100%;
+}
+
+.progressBar .barMbl:before{
+    width: 80%;
+}
+
+.progressBar .coding:before{
+    width:70%;
+}
+.progressBar .Illustration:before{
+    width:60%;
+}
+.progressBar>div .progress {
+    background: #00000038;
+    height: 40px;
+    border-radius: 0;
+}
+
+.progressBar>div .progress .progress-bar {
+    background: #c32865 !important;
+}
+.experienceRunningBar .progressBarContent {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px;
+}
 .tabsImg {
     border-radius: 20px;
     box-shadow: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
@@ -356,5 +448,73 @@ section.optimizeCode:before {
     z-index: -1;
     opacity: 0.6;
 }
+.educationDetailRow {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0px;
+    border-bottom: solid 1px #c4cfde73;
+}
+
+.educationDetailRow .educationImg, 
+ .educationDetailRow  .educationInfo, 
+.educationDetailRow  .educationContent {
+    flex: 1;
+}
+
+.educationDetailRow .educationImg svg {
+    width: 25%;
+    height: 25%;
+    color: #676767;
+}
+
+.educationInfo .educationDate {
+    color: #676767;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.educationInfo .educationAcadmy {
+    font-size: 23px;
+    color: #c4cfde;
+    margin-top: 10px;
+}
+
+.educationContent p {
+    color: #c4cfde;
+}
+.educationBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.educationBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.btnPrimary {
+    border: none !important;
+    background: linear-gradient(145deg, #1e2024, #23272b);
+    font-size: 14px;
+    font-weight: 500;
+    border: 0 none;
+    box-shadow: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+    font-weight: 500;
+    text-transform: uppercase;
+    height: 55px;
+    color: #c4cfde !important;
+}
+
+
+
+
+
+
+
+
+
 
 

@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import { Col, Container, Form, Image, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react';
+import { Button, Carousel, Col, Container, Form, Image, Modal, Row, Tab, Tabs } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt } from '@fortawesome/free-solid-svg-icons';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { faBolt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBehance, faFacebookF, faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import useProgressBars from '../../utils/useProgressBars'
 import './Home.css'
-import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { getHomeData } from '../../apiServices/Homw.Services';
+
 
 function Home() {
   const [show, setShow] = useState(false);
-
+  const [posts, setPosts] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -27,47 +26,56 @@ function Home() {
 
     setValidated(true);
   };
+  const progressBars = useProgressBars();
 
-  // const [count, setCount] = useState(0);
-
-  // const incrementCounter = () => {
-  //   setCount(prevCount => prevCount + 1);
-  // };
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCount(prevCount => prevCount < 100 ? prevCount + 1 : prevCount);
-  //   }, 100);
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-
-  // const handleScroll = () => {
-  //   const mainContent = document.getElementsByClassName('mainContent')[0];
-  //   const rect = mainContent.getBoundingClientRect();
-
-  //   if (rect.top < window.innerHeight && rect.bottom >= 0) {
-  //     setCount(0);
-  //   }
-  // };
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getHomeData('/posts');
+        setPosts(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   return (
+    <>
+<ul className='mt-5 pt-5'>
+  {posts.map(post => (
+    <li key={post.id}>
+      <h2>{post.title}</h2>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+
+      {post.featured_image && (
+        <img
+          src={post.featured_image}
+          alt={post.title}
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+      )}
+    </li>
+  ))}
+</ul>
+
+
+    
     <div className='mainContent'>
       <section className='bannerSlider d-flex align-items-center'>
         <Container>
           <Row className='align-items-center'>
-            <Col xs={12} md={6}>
-              <h1>Howdy, I'm Ramsay</h1>
+            <Col
+              sm={12}
+              md={{ span: 8, offset: 2 }}
+            >
+              <h1 className='text-center mb-5'>All in One Personal Portfolio for <strong>Developer</strong></h1>
             </Col>
-          </Row>
-          <Row>
-            <Col xs={12} sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}
+            >
               <div className='devServices'>
                 <div className='devServicesIcon'>
                   <FontAwesomeIcon icon={faBolt} />
@@ -78,7 +86,10 @@ function Home() {
                 </div>
               </div>
             </Col>
-            <Col xs={12} sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}
+            >
               <div className='devServices'>
                 <div className='devServicesIcon'>
                   <FontAwesomeIcon icon={faBolt} />
@@ -89,7 +100,10 @@ function Home() {
                 </div>
               </div>
             </Col>
-            <Col xs={12} sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}
+            >
               <div className='devServices'>
                 <div className='devServicesIcon'>
                   <FontAwesomeIcon icon={faBolt} />
@@ -110,6 +124,48 @@ function Home() {
             Optimized for a smaller build size, faster dev compilation and dozens of other improvements.<br />
             Optimized for a smaller build size, faster dev compilation and dozens of other improvements.
           </p>
+        </Container>
+      </section>
+      <section className='experienceWrappper'>
+        <Container>
+          <Row>
+            <Col
+              sm={12}
+              md={6}
+            >
+              <div className='experienceColWrapper'>
+                <div className='experienceColInner'>
+                  <span className='experienceNum'>4</span>
+                  <FontAwesomeIcon icon={faPlus} />
+                </div>
+                <div className='experienceText'>
+                  <p>Years Experience Working</p>
+                </div>
+              </div>
+            </Col>
+            <Col
+              sm={12}
+              md={6}
+            >
+              <div className='experienceContentWrap'>
+                <h2 className='mb-4'>Great Experience</h2>
+                <div className='experienceRunningBar'>
+                  <p>From tree make green multiply, great greater is. Fruit fowl blessed. Unto of man greater spirit you’ll beginning.</p>
+                  <div className='progressBar mobilebar'>
+                    {progressBars.map((bar, index) => (
+                      <div key={index}>
+                        {bar.label}
+                        <ProgressBar
+                          variant={bar.variant}
+                          now={bar.progress}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
         </Container>
       </section>
       <section className='latestDesing'>
@@ -404,6 +460,69 @@ function Home() {
           </Row>
         </Container>
       </section>
+      <section className='educationWrapper'>
+        <Container>
+          <Row>
+            <Col
+              sm={12}
+              md={12}
+            >
+              <div className='educationBtn'>
+                <h2>Education</h2>
+                <Button variant="primary btnPrimary">Download Resume</Button>
+              </div>
+              <div className='educationDetailRow'>
+                <div className='educationImg'>
+                  <FontAwesomeIcon icon={faBehance} />
+                </div>
+                <div className='educationInfo'>
+                  <div className='educationDate'>
+                    2019-2020
+                  </div>
+                  <div className='educationAcadmy'>
+                    Behance
+                  </div>
+                </div>
+                <div className='educationContent'>
+                  <p>Which firmament dominion first rule and tree. The seas he i were cattle Under living. It may beast every forth place.</p>
+                </div>
+              </div>
+              <div className='educationDetailRow'>
+                <div className='educationImg'>
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </div>
+                <div className='educationInfo'>
+                  <div className='educationDate'>
+                    2019-2020
+                  </div>
+                  <div className='educationAcadmy'>
+                    Linkedin
+                  </div>
+                </div>
+                <div className='educationContent'>
+                  <p>Which firmament dominion first rule and tree. The seas he i were cattle Under living. It may beast every forth place.</p>
+                </div>
+              </div>
+              <div className='educationDetailRow'>
+                <div className='educationImg'>
+                  <FontAwesomeIcon icon={faGithub} />
+                </div>
+                <div className='educationInfo'>
+                  <div className='educationDate'>
+                    2019-2020
+                  </div>
+                  <div className='educationAcadmy'>
+                    Git Hub
+                  </div>
+                </div>
+                <div className='educationContent'>
+                  <p>Which firmament dominion first rule and tree. The seas he i were cattle Under living. It may beast every forth place.</p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section className='contactUs d-flex align-items-center'>
         <Container>
           <Row>
@@ -513,6 +632,7 @@ function Home() {
         </Container>
       </section>
     </div>
+    </>
   )
 }
 
